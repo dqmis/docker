@@ -19,16 +19,11 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && \
 
 # install dependencies
 # See https://pytorch.org/ for other options if you use a different version of CUDA
-RUN pip install --user torch torchvision tensorboard cython
+RUN pip install --user torch torchvision tensorboard cython pandas matplotlib scikit-learn
 
-# install detectron2
 ENV FORCE_CUDA="1"
-# This will build detectron2 for all common cuda architectures and take a lot more time,
-# because inside `docker build`, there is no way to tell which architecture will be used.
-
 RUN pip install --user jupyterlab
 
-# Set a fixed model cache directory.
 ENV FVCORE_CACHE="/tmp"
 WORKDIR /home/appuser/wdir
 
